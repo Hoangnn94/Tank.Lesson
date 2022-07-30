@@ -30,11 +30,12 @@ public class TankController : MoveController
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "trigger1")
         {
             Destroy(gameObject);
+            GameManager.instance.addScore();
         }
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "trigger2")
         {
             Debug.Log("dinh dan");
         }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyController : TankController
 {
-    public GameObject Player;
-
+    
    private void Update()
     {
-        Vector3 direction = Player.transform.position;
+        var Player = PlayerController.instance.gameObject.transform;
+        Vector3 direction = Player.position;
         var gunDirection = direction - transform.position;
 
         move(gunDirection);
@@ -16,6 +16,7 @@ public class EnemyController : TankController
         if (Random.Range(0, 100) % 50 == 0)
         {
             Shoot();
+
         }
 
     }
