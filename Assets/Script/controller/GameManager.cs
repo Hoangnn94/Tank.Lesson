@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-
     public EnemyController tankEnemy;
     public int scorePlayer;
     public Text scoreTxt;
