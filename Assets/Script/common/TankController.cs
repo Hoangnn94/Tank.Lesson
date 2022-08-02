@@ -7,8 +7,10 @@ public class TankController : MoveController
    
     public Transform bodyTank;
     public Transform gun;
-    public GameObject bullet;
+    public BulletController bullet;
     public Transform transhoot;
+    public float hp;
+    public float level;
 
     protected override void move(Vector3 direction) 
     {
@@ -30,16 +32,18 @@ public class TankController : MoveController
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "trigger1")
+        if (collision.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
-            GameManager.instance.addScore();
+
+            hp = bullet.CalculateHp(hp, level);
+           
         }
-        if (collision.gameObject.tag == "trigger2")
+        if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("dinh dan");
+            hp = bullet.CalculateHp(hp, level);
         }
 
     }
 
 }
+

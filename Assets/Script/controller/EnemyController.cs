@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using LTAUnityBase.Base.DesignPattern;
 public class EnemyController : TankController
 {
     
    private void Update()
     {
-        var Player = PlayerController.instance.gameObject.transform;
-        Vector3 direction = Player.position;
+        var player = Player.Instance.gameObject.transform;
+        Vector3 direction = player.position;
         var gunDirection = direction - transform.position;
 
         move(gunDirection);
@@ -18,7 +18,10 @@ public class EnemyController : TankController
             Shoot();
 
         }
-
+        if (hp <= 0)
+        { Destroy.this.gameObject;
+            Observer.Instance.Notify(TOPICNAME.ENEMYDESTROY, level);
+        }
     }
  
 }
