@@ -24,14 +24,22 @@ public class BulletController : MoveController
         {
         Destroy(this.gameObject);
         Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            
         }
         time++;
 
-     }
+    if (tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+
+        }
+    }
     public virtual float CalculateHp(float hp, float level)
     {
         var hpLeft = hp - (level + damage);
+        Debug.Log(damage +"damege hien nay");
         Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        Debug.Log(hpLeft +"so hp con lai");
         return hpLeft;
 
     }

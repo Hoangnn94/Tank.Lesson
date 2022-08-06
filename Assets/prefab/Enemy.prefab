@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 5639643215239117111}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,8 +273,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6396339714959499302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.25, y: -0.7745039, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.2548, y: -0.7986, z: 0}
+  m_LocalScale: {x: 0.9871041, y: 0.958549, z: 1}
   m_Children:
   - {fileID: 6396339714166311055}
   - {fileID: 6396339715448104644}
@@ -346,8 +346,10 @@ MonoBehaviour:
   speed: 0.8
   bodyTank: {fileID: 6396339715448104644}
   gun: {fileID: 6396339714166311055}
-  bullet: {fileID: 7842766833030304843, guid: 1fd0ca9507912084facfd048c770aa8f, type: 3}
+  bullet: {fileID: 1761233983215138251, guid: b94b3340a5ed5b24bab1adfe3fb4c3b2, type: 3}
   transhoot: {fileID: 6396339714411260121}
+  hp: 10
+  level: 0
 --- !u!50 &2281732744297457752
 Rigidbody2D:
   serializedVersion: 4
@@ -420,8 +422,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6396339715448104647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.0147, y: 0, z: 0}
+  m_LocalScale: {x: 0.9645848, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6396339714959499301}
   m_RootOrder: 1

@@ -16,11 +16,14 @@ public class EnemyController : TankController
         if (Random.Range(0, 100) % 50 == 0)
         {
             Shoot();
-
+            
         }
         if (hp <= 0)
-        { Destroy.this.gameObject;
-            Observer.Instance.Notify(TOPICNAME.ENEMYDESTROY, level);
+        {
+           Destroy(this.gameObject);
+           Observer.Instance.Notify(TOPICNAME.ENEMYDESTROY, level);
+
+           
         }
     }
  

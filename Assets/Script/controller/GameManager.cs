@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int scorePlayer;
     public Text scoreTxt;
     public GameObject Gate;
+    public int levelPlayer;
 
     private void Awake()
     {
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         scoreTxt.text = "score : " + scorePlayer.ToString();
+        scoreTxt.text = "level : " + levelPlayer.ToString();
+
     }
 
     public void addScore(object data)
@@ -29,9 +32,14 @@ public class GameManager : MonoBehaviour
         scorePlayer += 10;
     }
 
+    public void addLevel(object data)
+    {
+        levelPlayer += 50;
+    }
+
     public void Respawn ()
-        {
-        Debug.Log("da chay qua day");
+     {
+      Debug.Log("da chay qua day");
      }
 
 }
