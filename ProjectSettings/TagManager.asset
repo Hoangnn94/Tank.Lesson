@@ -6,6 +6,7 @@ TagManager:
   tags:
   - playerbullet
   - Enemy
+  - ItemGunUp
   layers:
   - Default
   - TransparentFX

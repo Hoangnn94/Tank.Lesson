@@ -14,22 +14,25 @@ public class GameManager : MonoBehaviour
     public Text scoreTxt;
     public GameObject Gate;
     public int levelPlayer;
+    public Text levelTxt;
 
     private void Awake()
     {
         Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, addScore);
+        Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, addLevel);
     }
 
     private void Update()
     {
         scoreTxt.text = "score : " + scorePlayer.ToString();
-        scoreTxt.text = "level : " + levelPlayer.ToString();
+        levelTxt.text = "level : " + levelPlayer.ToString();
 
     }
 
     public void addScore(object data)
     {
         scorePlayer += 10;
+        Instantiate(tankEnemy, Gate.transform.position, Gate.transform.rotation);
     }
 
     public void addLevel(object data)

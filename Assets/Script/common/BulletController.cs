@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LTAUnityBase.Base.DesignPattern;
 
 public class BulletController : MoveController
 {
-    public float speed;
-    private float time = 0;
+   
+    public float time = 0;
     public GameObject smoke;
     public float timeLimit;
     public float damage;
@@ -20,26 +21,30 @@ public class BulletController : MoveController
     }
     protected virtual void BulletEx()
     {
-    if (time == timeLimit)
+    if (time == 30)
         {
-        Destroy(this.gameObject);
-        Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            //Destroy(this.gameObject);
+            //Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            PoolingObject.DestroyPooling<BulletController>(this);
+            Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
+
             
         }
         time++;
-
-    if (tag == "Enemy")
-        {
-            Destroy(this.gameObject);
-
-        }
     }
-    public virtual float CalculateHp(float hp, float level)
+
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        var hpLeft = hp - (level + damage);
-        Debug.Log(damage +"damege hien nay");
+        Destroy(gameObject);
         Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
-        Debug.Log(hpLeft +"so hp con lai");
+    }
+
+    public virtual float CalculateHp(float hp)
+    {
+        var hpLeft = hp - damage;
+        
+        Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        
         return hpLeft;
 
     }

@@ -9,6 +9,11 @@ public class PlayerController : TankController
 {
     public Text levelTxt;
     public Slider slider_hp;
+    public GameObject gun1;
+    public Transform transhoot1;
+    public GameObject gun2;
+    public Transform transhoot2;
+    private bool _itemGunUp = false;
 
     private void Awake()
     {
@@ -20,33 +25,48 @@ public class PlayerController : TankController
         Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, LevelUp);
     }
     void Update()
-    { 
+    {
+        levelTxt.text = "Level Player: " + level.ToString();
+        gun1.SetActive(_itemGunUp);
+        gun2.SetActive(_itemGunUp);
         slider_hp.value = hp;
         if (hp <= 0)
 
         {
             //Destroy(this.gameObject);
         }
-        // dùng A,D,W,S hay cá phím mũi tên để di chuyển tank
+     
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontal, vertical);
         move(direction);
 
-        //hướng của súng bằng vị trí của chuột
+       
         var position = Input.mousePosition;
         Vector3 gunDirectionmoba = new Vector3(
             position.x - Screen.width / 2,
             position.y - Screen.height / 2);
         rotateGun(gunDirectionmoba);
 
-        //ấn 1 lần chuột là bắn 
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot(); 
+            Shoot();
         }
-
     }
+
+    protected override void Shoot()
+    {
+     if (_itemGunUp)
+        {
+            CreateBullet(transhoot1);
+            Debug.Log("co ban dan khong o sung 2");
+            CreateBullet(transhoot2);
+            Debug.Log("co ban dan khong o sung 1");
+        }
+     base.Shoot();
+        Debug.Log("có bắn ở súng chính");
+    }
+
 
     private void LevelUp(object data)
     {
@@ -55,6 +75,16 @@ public class PlayerController : TankController
         levelTxt.text = "Level player: " + level.ToString();
     }
     
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ItemGunUp")
+        {
+            _itemGunUp = true;
+            Destroy(collision.gameObject);
+             
+        }
+        base.OnTriggerEnter2D(collision);
+    }
 }
 
 public class Player : SingletonMonoBehaviour<PlayerController>

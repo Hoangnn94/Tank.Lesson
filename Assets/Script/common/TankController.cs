@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LTAUnityBase.Base.DesignPattern;
 
 public class TankController : MoveController
 {
@@ -11,9 +12,12 @@ public class TankController : MoveController
     public Transform transhoot;
     public float hp;
     public float level;
+    public float time;
+   
+    
 
     protected override void move(Vector3 direction) 
-    {
+    {   
         if (direction != Vector3.zero)
         {
             bodyTank.up = direction;
@@ -25,23 +29,52 @@ public class TankController : MoveController
     {
         gun.up = direction;
     }
-    public void Shoot()
+    protected virtual void Shoot()
     {
-        Instantiate(bullet, transhoot.transform.position, transhoot.transform.rotation);
+        //Instantiate(bullet, transhoot.transform.position, transhoot.transform.rotation);
+        CreateBullet(transhoot);
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag != this.gameObject.tag)
         {
+            // getComponent de lay thuoc tinh cua Object minh xac dinh roi .
 
-            hp = bullet.CalculateHp(hp, level);
-            
+            var calculateHP = collision.GetComponent<BulletController>();
+            if (calculateHP is null)
+            {
+                return;
+            }
+            hp = calculateHP.CalculateHp(hp);
 
         }
        
 
     }
+
+    public BulletController CreateBullet(Transform tranShoot)
+    {  // tao ra vat mau la bullet voi kieu du lieu la bulletController 
+        BulletController bulletclone = PoolingObject.createPooling<BulletController>(bullet);
+
+        if (bulletclone == null)
+        {
+            return Instantiate(bullet, transhoot.position, tranShoot.rotation);
+        }
+
+        bulletclone.time = 0;
+        bulletclone.transform.position = tranShoot.position;
+        bulletclone.transform.rotation = tranShoot.rotation;
+        //
+        bulletclone.damage += level;
+        // tag cua vien dan bang = tank(Player) 
+
+        bulletclone.tag = this.tag;
+        return bulletclone;
+
+
+    }
+
 
 }
 
