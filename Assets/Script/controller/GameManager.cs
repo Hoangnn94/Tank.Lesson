@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void addScore(object data)
     {
+        // co cong diem 
         scorePlayer += 10;
         Instantiate(tankEnemy, Gate.transform.position, Gate.transform.rotation);
     }
