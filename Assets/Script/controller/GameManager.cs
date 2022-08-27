@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        // khoi tao observer 
         Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, addScore);
         Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, addLevel);
     }
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void addScore(object data)
     {
+        // co cong diem 
         scorePlayer += 10;
         Instantiate(tankEnemy, Gate.transform.position, Gate.transform.rotation);
     }
