@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void addLevel(object data)
     {
+        //test lan 3
         levelPlayer += 50;
     }
 
