@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     public void Respawn ()
      {
-        // test lan 2
+        // test lan 7
       Debug.Log("da chay qua day");
      }
 
