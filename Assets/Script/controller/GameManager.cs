@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void addLevel(object data)
-    {// test lan thu 4
+    {
         levelPlayer += 50;
     }
 
@@ -51,5 +51,5 @@ public class GameManager : MonoBehaviour
 }
 public class Gamer : SingletonMonoBehaviour<GameManager>
 {
-    
+    // test lan thu 5
 }
