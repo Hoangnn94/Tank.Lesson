@@ -33,6 +33,9 @@ public class TankController : MoveController
     {
         //Instantiate(bullet, transhoot.transform.position, transhoot.transform.rotation);
         CreateBullet(transhoot);
+        
+
+
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -59,7 +62,10 @@ public class TankController : MoveController
 
         if (bulletclone == null)
         {
+            Debug.Log("co di qua day");
             return Instantiate(bullet, transhoot.position, tranShoot.rotation);
+            
+
         }
 
         bulletclone.time = 0;

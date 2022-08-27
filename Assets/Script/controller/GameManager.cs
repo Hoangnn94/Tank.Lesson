@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        // khoi tao observer 
         Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, addScore);
         Observer.Instance.AddObserver(TOPICNAME.ENEMYDESTROY, addLevel);
     }

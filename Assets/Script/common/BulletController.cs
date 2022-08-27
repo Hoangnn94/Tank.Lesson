@@ -33,7 +33,7 @@ public class BulletController : MoveController
         time++;
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+   protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(gameObject);
         Instantiate(smoke, this.gameObject.transform.position, this.gameObject.transform.rotation);
